@@ -2,6 +2,7 @@
 #include "imgui/imgui.h"
 #include "classes/TicTacToe.h"
 #include "classes/Checkers.h"
+#include "classes/ConnectFour.h"
 #include "classes/Othello.h"
 
 namespace ClassGame {
@@ -54,6 +55,10 @@ namespace ClassGame {
                     }
                     if (ImGui::Button("Start Othello")) {
                         game = new Othello();
+                        game->setUpBoard();
+                    }
+                    if (ImGui::Button("Start Connect Four")) {
+                        game = new ConnectFour();
                         game->setUpBoard();
                     }
                 } else {

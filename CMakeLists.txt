@@ -13,7 +13,7 @@ endif()
 # Set compiler-specific flags for g++ and MinGW
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     if(LINUX OR WINDOWS)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-unused-parameter -Wno-ignored-qualifiers")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ldwmapi -Wall -Wextra -Wno-unused-parameter -Wno-ignored-qualifiers")
     endif()
 endif()
 
@@ -63,10 +63,11 @@ add_executable(demo Application.cpp
                           classes/TicTacToe.cpp
                           classes/Checkers.cpp
                           classes/Othello.cpp
+                          classes/ConnectFour.cpp
                           ${BCKD_FILE}
                           ${MAIN_FILE}
                           ${IMPL_FILE}
-                )
+)
 
 if(MACOS OR LINUX)
     target_link_libraries(demo ${OPENGL_gl_LIBRARY} glfw)
@@ -79,6 +80,7 @@ elseif(WINDOWS)
         user32.lib 
         gdi32.lib 
         winmm.lib
+        dwmapi.lib
     )
 endif()
 
